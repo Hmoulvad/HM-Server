@@ -9,7 +9,7 @@
         "test": "newman run ./tests/GraphQLEndpointTests.postman_collection.json",
         "copy:graphql": "copyfiles -f 'src/graphql/typeDefs/*.typedefs.graphql' ./build/graphql/typeDefs/",
         "copy:favicon": "copyfiles -f 'src/favicon.ico' ./build/",
-        "build:prod": "tsc && npm run copy:graphql && npm run copy:favicon"
+        "build": "tsc && npm run copy:graphql && npm run copy:favicon"
     },
     "keywords": [],
     "author": "HBM",
@@ -34,6 +34,5 @@
         "tslint-config-prettier": "^1.9.0",
         "typescript": "^2.7.2"
     },
-    "heroku-prebuild": "npm install",
-    "heroku-postbuild": "npm run build:prod"
+    "heroku-prebuild": "npm install"
 }
