@@ -4,7 +4,10 @@ import { default as schema } from "./graphql/typeDefs";
 import { default as resolversMap } from "./graphql/resolvers";
 import { permissions } from "./graphql/helpers/authentication";
 import { makeExecutableSchema } from 'graphql-tools';
+import * as favicon from "serve-favicon";
+import * as path from "path";
 
+favicon(path.join(__dirname, 'favicon.ico'));
 
 const db = startDB({
   user: process.env.MONGO_ATLAS_USER,
