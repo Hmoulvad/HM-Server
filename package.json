@@ -9,7 +9,7 @@
         "test": "newman run ./tests/GraphQLEndpointTests.postman_collection.json",
         "copy:graphql": "copyfiles -f 'src/graphql/typeDefs/*.typedefs.graphql' ./build/graphql/typeDefs/",
         "copy:favicon": "copyfiles -f 'src/favicon.ico' ./build/",
-        "build": "tsc && npm run copy:graphql && npm run copy:favicon"
+        "build": "tsc && npm run copy:graphql"
     },
     "keywords": [],
     "author": "HBM",
