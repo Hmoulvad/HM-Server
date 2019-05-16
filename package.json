@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node ./build/index.js",
+        "start": "nodemon --exec node ./build/index.js",
         "start:dev": "nodemon --exec ts-node src/index.ts",
         "test": "newman run ./tests/GraphQLEndpointTests.postman_collection.json",
         "copy": "copyfiles -f './src/graphql/typeDefs/*.typedefs.graphql' ./build/graphql/typeDefs/",
