@@ -1,0 +1,11 @@
+# Seeding Data Carl Ras Projects
+
+mutation SeedProjectOne {
+    createProject(name: "Carl Ras", unitId: "5cd076728ec4f39170c1116e")
+}
+mutation SeedProjectTwo {
+    createProject(name: "Lemvigh", unitId: "5cd076738ec4f39170c1116f")
+}
+mutation SeedProjectThree {
+    createProject(name: "Kaufmann", unitId: "5cd076748ec4f39170c11170")
+}

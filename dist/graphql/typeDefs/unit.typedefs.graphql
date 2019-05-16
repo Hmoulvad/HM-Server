@@ -1,0 +1,18 @@
+type Query {
+    unit(_id: String!): Unit
+    units: [Unit]
+}
+
+type Mutation {
+    createUnit(name: String!): Boolean!
+}
+
+type Unit {
+    _id: String!
+    name: String!
+    unitManager: String!
+    createdOn: String!
+    developers: [Developer]
+    projects: [Project]
+    projectManagers: [ProjectManager]
+}

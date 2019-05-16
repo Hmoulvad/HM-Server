@@ -1,0 +1,11 @@
+# Seeding Data Carl Ras Unit
+
+mutation SeedUnitOne {
+    createUnit(name: "CPH1")
+}
+mutation SeedUnitTwo {
+    createUnit(name: "AAR1")
+}
+mutation SeedUnitThree {
+    createUnit(name: "AAR2")
+}

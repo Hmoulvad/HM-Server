@@ -1,0 +1,17 @@
+type Query {
+    project(_id: String!): Project
+}
+
+type Mutation {
+    createProject(name: String!, unitId: String!): Boolean!
+    setProjectManager(name: String!, projectManagerId: String!): Boolean!
+}
+
+type Project {
+    _id: String!
+    name: String!
+    createdOn: String!
+    unit: String!
+    developers: [Developer]
+    projectManager: ProjectManager
+}

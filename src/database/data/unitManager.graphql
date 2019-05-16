@@ -1,0 +1,8 @@
+# Seeding Data Carl Ras Unit Managers
+
+mutation SeedUnitManagerOne {
+    createUnitManager(
+        name: "Jacob Thomas Nielsen"
+        unitId: "5cd076728ec4f39170c1116e"
+    )
+}

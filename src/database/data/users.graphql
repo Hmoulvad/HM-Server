@@ -1,0 +1,27 @@
+# Seeding Data Carl Ras Users
+
+# Developers
+mutation SeedDeveloperOne {
+    signup(username: "hbm@impact.dk", password: "1234", role: "Developer")
+}
+mutation SeedDeveloperTwo {
+    signup(username: "jpa@impact.dk", password: "1234", role: "Developer")
+}
+mutation SeedDeveloperThree {
+    signup(username: "bss@impact.dk", password: "1234", role: "Developer")
+}
+mutation SeedDeveloperFour {
+    signup(username: "kb@impact.dk", password: "1234", role: "Developer")
+}
+
+# Project Manager
+mutation SeedProjectManager {
+    signup(username: "cla@impact.dk", password: "1234", role: "Project Manager")
+}
+
+# Unit Manager
+mutation SeedUnitManager {
+    signup(username: "jtn@impact.dk", password: "1234", role: "Unit Manager")
+}
+
+# Bind Users to Developers

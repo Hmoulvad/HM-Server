@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_ATLAS_USER" : "hm",
+        "MONGO_ATLAS_PW" : "1234",
+        "Jwt_Secret" : "IMPACTERCHAMPS"
+    }
+}

@@ -1,0 +1,35 @@
+type HolidayRequest {
+    _id: String!
+    creatorName: String
+    creatorRef: String!
+    unitManagerName: String
+    unitManagerRef: String
+    unitManagerApproval: Boolean
+    refName: String
+    ref: String
+    refApproval: Boolean
+    from: String!
+    to: String!
+}
+
+type Query {
+    getUserHolidayRequests(_id: String!): [HolidayRequest]
+    getPendingHolidayRequests(_id: String!): [HolidayRequest]
+}
+
+type Mutation {
+    createHolidayRequest(
+        _id: String!
+        role: String!
+        projectId: String
+        from: String!
+        to: String!
+    ): Boolean
+    deleteHolidayRequest(_id: String!): Boolean
+    respondToHolidayRequest(
+        _id: String!
+        refId: String!
+        role: String!
+        response: Boolean!
+    ): Boolean
+}

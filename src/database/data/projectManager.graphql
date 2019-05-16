@@ -1,0 +1,9 @@
+# Seeding Data Carl Ras Project Managers
+
+mutation SeedUnitManagerOne {
+    createProjectManager(
+        name: "Christian Lindhardt"
+        unitId: "5cd076728ec4f39170c1116e"
+        referenceId: "5cd07b308ec4f39170c11177"
+    )
+}

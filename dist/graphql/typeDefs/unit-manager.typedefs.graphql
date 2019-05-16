@@ -1,0 +1,20 @@
+type Query {
+    unitManager(_id: String!): UnitManager
+}
+
+type Mutation {
+    createUnitManager(
+        name: String!
+        unitId: String!
+        referenceId: String
+    ): Boolean!
+}
+
+type UnitManager {
+    _id: String!
+    name: String!
+    createdOn: String!
+    ref: String
+    unit: String
+    holidayRequests: [HolidayRequest]
+}

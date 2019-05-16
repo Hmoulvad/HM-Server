@@ -1,0 +1,771 @@
+{
+    "info": {
+        "_postman_id": "e73f9d22-0edd-489e-b8f0-e46f71ab1cf3",
+        "name": "GraphQL Endpoint Tests",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Query IsLoggedIn",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "9af1b2d0-2443-4872-afba-9fa74f91177c",
+                        "exec": [
+                            "pm.test(\"IsUserLogged in expect to be: HBM@impact.dk\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.isLoggedIn.username).to.eql(\"hbm@impact.dk\")",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"query IsLoggedIn {\\n  isLoggedIn {\\n    username\\n  }\\n}\\n\\n\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query IsTokenValid",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "46f9496e-9631-41f0-960b-3b103350be3a",
+                        "exec": [
+                            "pm.test(\"Token is valid\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.isTokenValid).to.eql(true)",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"query IsTokenValid {\\n  isTokenValid(token: \\\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38\\\")\\n}\\n\\n\\n\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query DecodedToken",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "908199c1-5939-4e8a-8225-87eb7c587e29",
+                        "exec": [
+                            "pm.test(\"Decoded Token Data expected to be equal\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    var tokenData = {",
+                            "        \"id\": \"5cd0727159d7849139e3329d\",",
+                            "        \"role\": \"Developer\",",
+                            "        \"objectRefId\": \"5cd07c708ec4f39170c1117a\"",
+                            "    }",
+                            "    pm.expect(jsonData.data.decodeToken).to.eql(tokenData)",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"query decodeToken {\\n  decodeToken(token: \\\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38\\\") {\\n    id,\\n    role,\\n    objectRefId,\\n  }\\n}\\n\\n\\n\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Developer",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "2e7de9bd-0c7c-4ce1-8679-00d6da4b61dd",
+                        "exec": [
+                            "pm.test(\"Expect Developer name to be equal to Hannibal B. Moulvad\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.developer.name).to.eql(\"Hannibal B. Moulvad\")",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"query Developer {\\n  developer(_id: \\\"5cd07c708ec4f39170c1117a\\\") {\\n    name\\n  }\\n}\\n\\n\\n\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query GetUserHolidayRequests",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "78074ff1-1784-4af1-9ef7-38fce7f15915",
+                        "exec": [
+                            "pm.test(\"Expects to receive status 200\", function() {",
+                            "    pm.response.to.have.status(200);",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  getUserHolidayRequests(_id: \\\"5cd07c708ec4f39170c1117a\\\") \\n  {\\n    refName\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query GetPendingHolidayRequests",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "b83046e3-ae6a-4627-b3e7-5ae5e9f6db7d",
+                        "exec": [
+                            "pm.test(\"Expects to receive status 200\", function() {",
+                            "    pm.response.to.have.status(200);",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  getPendingHolidayRequests(_id: \\\"5cd07c708ec4f39170c1117a\\\") \\n  {\\n    refName\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query ProjectManager",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "de93265c-6c7c-4a50-ae71-4dd980252fcb",
+                        "exec": [
+                            "pm.test(\"Expect Project Manager name to be equal to Christian Lindhardt\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.projectManager.name).to.eql(\"Christian Lindhardt\")",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  projectManager(_id: \\\"5cd07baf8ec4f39170c11178\\\") \\n  {\\n    name\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Project",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "fbbd5613-82dd-4cbb-baf6-b0c99e5ea7f0",
+                        "exec": [
+                            "pm.test(\"Expect Project name to be equal to Carl Ras\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.project.name).to.eql(\"Carl Ras\")",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  project(_id: \\\"5cd07a568ec4f39170c11171\\\") {\\n    name\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query UnitManager",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "e4aa15cb-eec4-484c-a943-a05566f94c5c",
+                        "exec": [
+                            "pm.test(\"Expect Unit Manager name to be equal to Jacob Thomas Nielsen\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.unitManager.name).to.eql(\"Jacob Thomas Nielsen\")",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  unitManager(_id: \\\"5cd07b308ec4f39170c11177\\\") {\\n    name\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Unit",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "660d9ade-8ee2-479c-b632-083ed7df6a92",
+                        "exec": [
+                            "pm.test(\"Expect Unit name to be equal to CPH1\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data.unit.name).to.eql(\"CPH1\")",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  unit(_id: \\\"5cd076728ec4f39170c1116e\\\") {\\n    name\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Units",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "a0f3faed-9447-449b-8ff7-b0af910d17fb",
+                        "exec": [
+                            "pm.test(\"Expect to get the three units within Impact\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    var units = [",
+                            "        {",
+                            "            \"name\": \"CPH1\"",
+                            "        },",
+                            "        {",
+                            "            \"name\": \"AAR1\"",
+                            "        },",
+                            "        {",
+                            "            \"name\": \"AAR2\"",
+                            "        }",
+                            "    ]",
+                            "    pm.expect(jsonData.data.units).to.eql(units)",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"{\\n  units {\\n    name\\n  }\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Mutation LogIn",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "caddfac0-0354-48c6-9f4d-3594a892624a",
+                        "exec": [
+                            "pm.test(\"Expects to be logged in and receive token\", function() {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.data).to.property(\"login\");",
+                            "})"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept-Encoding",
+                        "value": "gzip, deflate, br"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Connection",
+                        "value": "keep-alive"
+                    },
+                    {
+                        "key": "DNT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "Origin",
+                        "value": "http://localhost:4000"
+                    },
+                    {
+                        "key": "authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNWNkMDcyNzE1OWQ3ODQ5MTM5ZTMzMjlkIiwib2JqZWN0UmVmSWQiOiI1Y2QwN2M3MDhlYzRmMzkxNzBjMTExN2EiLCJyb2xlIjoiRGV2ZWxvcGVyIn0sImlhdCI6MTU1NzU5MTgxMCwiZXhwIjoxNTg5MTI3ODEwfQ.WETxzFC6p-uN6utH21oyVEItDKTxilXl4_IsMWA7Z38"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"query\":\"mutation LogIn {\\n  login(username: \\\"hbm@impact.dk\\\", password:\\\"1234\\\")\\n}\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "4000",
+                    "path": [""]
+                }
+            },
+            "response": []
+        }
+    ]
+}

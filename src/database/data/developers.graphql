@@ -1,0 +1,33 @@
+# Seeding Data Carl Ras Developers
+
+mutation SeedDeveloperOne {
+    createDeveloper(
+        name: "Hannibal B. Moulvad"
+        unitId: "5cd076728ec4f39170c1116e"
+        projectId: "5cd07a568ec4f39170c11171"
+    )
+}
+
+mutation SeedDeveloperTwo {
+    createDeveloper(
+        name: "Kim Bonde"
+        unitId: "5cd076728ec4f39170c1116e"
+        projectId: "5cd07a568ec4f39170c11171"
+    )
+}
+
+mutation SeedDeveloperThree {
+    createDeveloper(
+        name: "Jonas Praem Andreasson"
+        unitId: "5cd076728ec4f39170c1116e"
+        projectId: "5cd07a568ec4f39170c11171"
+    )
+}
+
+mutation SeedDeveloperFour {
+    createDeveloper(
+        name: "Bo Skov Selbach"
+        unitId: "5cd076728ec4f39170c1116e"
+        projectId: "5cd07a568ec4f39170c11171"
+    )
+}
