@@ -31,7 +31,13 @@ export default {
             if ( allHolidayRequests ) {
                 let specificHolidayRequests: IHolidayRequestModel[] = [];
                 for (let request of allHolidayRequests) {
-                    if ( request.unitManagerRef.toString() === _id || request.ref.toString() === _id) {
+                    if ( request.unitManagerRef === undefined ) {
+                        if ( request.ref.toString() === _id ) {
+                            const creator = await findReferenceInDB(request.creatorRef, models);
+                            request.creatorName = creator.name;
+                            specificHolidayRequests.push(request);
+                        }
+                    } else if ( request.unitManagerRef.toString() === _id || request.ref.toString() === _id) {
                         const creator = await findReferenceInDB(request.creatorRef, models);
                         request.creatorName = creator.name;
                         specificHolidayRequests.push(request);
